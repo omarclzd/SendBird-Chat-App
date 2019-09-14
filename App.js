@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, Button} from 'react-native';
+import Login from './src/screens/Login';
 
 class App extends Component {
   constructor(props) {
@@ -9,17 +10,7 @@ class App extends Component {
   render() {
     return (
       <View>
-        <View>
-          <Text>User ID</Text>
-          <TextInput />
-        </View>
-        <View>
-          <Text>Nickname</Text>
-          <TextInput />
-        </View>
-        <View>
-          <Button title="Connect" />
-        </View>
+        <Login />
       </View>
     );
   }
