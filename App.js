@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Button} from 'react-native';
+import {View} from 'react-native';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import Login from './src/screens/Login';
+import Menu from './src/screens/Menu';
+
+const MainNavigator = createStackNavigator({
+  Login: {screen: Login},
+  Menu: {screen: Menu},
+});
+
+const AppContainer = createAppContainer(MainNavigator);
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    return (
-      <View>
-        <Login />
-      </View>
-    );
+    return <AppContainer />;
   }
 }
 
