@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 
-const Menu = () => {
-  return (
-    <View>
-      <Text>Menu</Text>
-    </View>
-  );
-};
+class Menu extends Component {
+  static navigationOptions = {
+    title: 'MENU',
+  };
+  render() {
+    return (
+      <View>
+        <Text>Menu</Text>
+      </View>
+    );
+  }
+}
 
 export default Menu;

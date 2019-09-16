@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, Button} from 'react-native';
-import {APP_ID} from 'react-native-dotenv';
+
 import SendBird from 'sendbird';
 
 class Login extends Component {
+  static navigationOptions = {
+    title: 'LOGIN',
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +44,7 @@ class Login extends Component {
                 error: '',
               },
               () => {
-                console.log('connected');
+                this.props.navigation.navigate('Menu');
               },
             );
           }
