@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+
+import {Provider} from 'react-redux';
+import store from './src/store';
+
 import Login from './src/screens/Login';
 import Menu from './src/screens/Menu';
 
@@ -14,7 +17,11 @@ const AppContainer = createAppContainer(MainNavigator);
 
 class App extends Component {
   render() {
-    return <AppContainer />;
+    return (
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    );
   }
 }
 
