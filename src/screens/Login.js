@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, Button} from 'react-native';
 import {connect} from 'react-redux';
-import {sendbirdLogin} from '../actions';
-
-// import SendBird from 'sendbird';
+import {NavigationActions, StackActions} from 'react-navigation';
+import {initLogin, sendbirdLogin} from '../actions';
 
 class Login extends Component {
   static navigationOptions = {
@@ -16,14 +15,21 @@ class Login extends Component {
       userId: '',
       nickname: '',
     };
-    this._onButtonPress = this._onButtonPress.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.initLogin();
   }
 
   componentWillReceiveProps(props) {
     const {user, error} = props;
     if (user) {
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({routeName: 'Menu'})],
+      });
       this.setState({userId: '', nickname: ''}, () => {
-        this.props.navigation.navigate('Menu');
+        this.props.navigation.dispatch(resetAction);
       });
     }
   }
@@ -40,33 +46,6 @@ class Login extends Component {
     const {userId, nickname} = this.state;
     this.props.sendbirdLogin({userId, nickname});
   };
-
-  // _onButtonPress = () => {
-  //   const {userId, nickname} = this.state;
-  //   const sb = new SendBird({appId: '62E68553-C4A2-4A62-8A3C-7EADDE8519CF'});
-  //   sb.connect(userId, (user, error) => {
-  //     if (error) {
-  //       this.setState({error});
-  //     } else {
-  //       sb.updateCurrentUserInfo(nickname, null, (user, error) => {
-  //         if (error) {
-  //           this.setState({error});
-  //         } else {
-  //           this.setState(
-  //             {
-  //               userId: '',
-  //               nickname: '',
-  //               error: '',
-  //             },
-  //             () => {
-  //               this.props.navigation.navigate('Menu');
-  //             },
-  //           );
-  //         }
-  //       });
-  //     }
-  //   });
-  // };
 
   render() {
     return (
@@ -102,5 +81,5 @@ function mapStateToProps({login}) {
 
 export default connect(
   mapStateToProps,
-  {sendbirdLogin},
+  {initLogin, sendbirdLogin},
 )(Login);

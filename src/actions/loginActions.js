@@ -1,5 +1,9 @@
-import {LOGIN_SUCCESS, LOGIN_FAIL} from './types';
+import {INIT_LOGIN, LOGIN_SUCCESS, LOGIN_FAIL} from './types';
 import {sbConnect} from '../sendbirdActions';
+
+export const initLogin = () => {
+  return {type: INIT_LOGIN};
+};
 
 export const sendbirdLogin = ({userId, nickname}) => {
   return dispatch => {
