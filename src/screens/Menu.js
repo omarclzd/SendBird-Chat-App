@@ -34,7 +34,7 @@ class Menu extends Component {
   }
 
   _onProfileButtonPress = () => {
-    // TODO: Profile screen
+    this.props.navigation.navigate('Profile');
   };
 
   _onOpenChannelPress = () => {

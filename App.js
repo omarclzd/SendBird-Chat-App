@@ -7,10 +7,12 @@ import store from './src/store';
 
 import Login from './src/screens/Login';
 import Menu from './src/screens/Menu';
+import Profile from './src/screens/Profile';
 
 const MainNavigator = createStackNavigator({
   Login: {screen: Login},
   Menu: {screen: Menu},
+  Profile: {screen: Profile},
 });
 
 const AppContainer = createAppContainer(MainNavigator);
